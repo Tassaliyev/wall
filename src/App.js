@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Routes, Route} from "react-router-dom";
+// import Preloader from "../src/components/Preloader"
+import MainPageContainer from './containers/MainPageContainer';
+import NavContainer from './containers/NavContainer';
+import 'react-notifications/lib/notifications.css';
+import {NotificationContainer} from 'react-notifications';
+import About from './components/About';
+import Contacts from './components/Contacts';
 
-function App() {
+
+
+const App = () => {
+
+  
+   
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+
+    <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<div>
+          {/* <Preloader/> */}
+        <NavContainer/>
+        <MainPageContainer location="main"/>
+
+        
+    
+            </div>} />
+          <Route path="favorites" element={<div>
+            <NavContainer/>
+          <MainPageContainer location="favorites"/>
+          </div>}
+          />
+          <Route path="about" element={<About/>} />
+          <Route path="contacts" element={<Contacts/>} />
+        </Routes>
+      </BrowserRouter>
+      <NotificationContainer/>
     </div>
-  );
+
+      
+
+  )
 }
 
-export default App;
+export default App
