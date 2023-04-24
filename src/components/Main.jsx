@@ -67,7 +67,6 @@ export default class Main extends Component {
         var { baseUrl,searchValue, clientId} = this.props
     var url = ""
       url = `${baseUrl}/search/photos?per_page=20&page=1&query=${searchValue}&client_id=${clientId}`
-      debugger
       
       Axios.get(url).then(function (res) {
         if (res.status === 200) {
@@ -172,7 +171,6 @@ this.props.changeValue("page", page)
   }
 
   handlePageChange(e) {
-    debugger
     var type = e.target.dataset.testid
     if(type==="NavigateNextIcon") {
 this.props.changeValue("page", this.props.page+1)
@@ -230,7 +228,7 @@ this.onPageSubmit(newPage)
     </Stack>
     {location==="main" &&
     <div>
-      <Pagination outlined color="primary" style={{"background-color": "#fff", "width": "400px","margin": "0px auto", "padding": "0px 20px"}} count={totalPages} page={page} variant="outlined" shape="rounded" onChange={(e)=> {this.handlePageChange(e)}}  />
+      <Pagination color="primary" style={{"backgroundColor": "#fff", "width": "400px","margin": "0px auto", "padding": "0px 20px"}} count={totalPages} page={page} variant="outlined" shape="rounded" onChange={(e)=> {this.handlePageChange(e)}}  />
       <ul className="categories">
         <li className={searchValue==="LION" ? "buttons active" : "buttons"} onClick={()=>{this.onCategoryClick("LION"); this.setState({activeIndex: 0})}}>Лев</li>
         <li className={searchValue==="TIGER" ? "buttons active" : "buttons"} onClick={()=>{this.onCategoryClick("TIGER"); this.setState({activeIndex: 1})}}>Тигр</li>
@@ -246,10 +244,10 @@ this.onPageSubmit(newPage)
 <div className="image-container">
       { !isEmpty(photos) ? photos.map((e, i) =>
       <div className="box" key={i}>
-<OverlayTrigger trigger="hover" placement="top" overlay={e.liked_by_user ? dlt : save}>
+<OverlayTrigger trigger={["hover", "hover"]} placement="top" overlay={e.liked_by_user ? dlt : save}>
 <button className='btn-heart' onClick={()=>{e.liked_by_user ? this.onUnLike(e.id) : this.onLike(e.id)}}><i style={{"color": e.liked_by_user && "red"}} className={e.liked_by_user ?'fas fa-trash' : "fas fa-bookmark"}></i></button>
 </OverlayTrigger>
-<OverlayTrigger trigger="hover" placement="top" overlay={download}>
+<OverlayTrigger trigger={["hover", "hover"]} placement="top" overlay={download}>
 <button className='btn-download' onClick={()=>{this.fileDownload(e.urls.regular)}}><i className='fas fa-download'></i></button>
 </OverlayTrigger>
         <img onClick={() => this.setState({ modalOpen: true,modalImg: e.urls.regular })} src={e.urls.regular} loading="eager" alt=""></img>

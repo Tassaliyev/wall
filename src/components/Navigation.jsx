@@ -58,7 +58,7 @@ const Navigation = (props) => {
       </a>
       {!isEmpty(search) &&
       <button className='search-btn' onClick={()=>{onSubmit()}}>Искать</button>}
-      <OverlayTrigger trigger="hover" placement="bottom" overlay={popover}>
+      <OverlayTrigger trigger={["hover", "hover"]} placement="bottom" overlay={popover}>
       <input className='searchInput' placeholder='Введите свой запрос' value={search} onChange={(e) =>{ setSearch(e.target.value); props.changeValue("searchValue", e.target.value)}} onKeyDown={(e)=>{onPressEnter(e)}}></input>
   </OverlayTrigger>
       <div className="navigation">
