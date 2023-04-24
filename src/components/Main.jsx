@@ -20,9 +20,9 @@ export default class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalOpen: false,
-      modalImg: "",
-      activeIndex: 0,
+      modalOpen: false, //триггер для открытия главной модалки
+      modalImg: "", // переменная для src картинки главной модалки
+      activeIndex: 0, //индекс для отображения выбраной категории
     }
     
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -35,7 +35,7 @@ export default class Main extends Component {
     
   }
   
-  
+  //функция для скачивания картинок
   fileDownload(url) {
     fetch(url, {
       method: "GET",
@@ -56,12 +56,12 @@ export default class Main extends Component {
       });
   }
 
-
+//первая загрузка компонента
   componentDidMount() {
     
     var {  location} = this.props
 
-
+//для определиня типа страницы( один и тот же компонент используется на главной странице и странице сохраненных)
     switch (location) {
       case 'main':
         var { baseUrl,searchValue, clientId} = this.props
@@ -80,7 +80,7 @@ export default class Main extends Component {
         break;
       case 'favorites':
         
-      
+      //токен для отправки запроса
       var { token} = this.props
       let config = {
         headers: {
@@ -105,7 +105,6 @@ export default class Main extends Component {
 
   
   onCategoryClick(value) {
-    debugger
     var { baseUrl,page, clientId} = this.props
     this.props.changeValue("searchValue", value)
     this.props.changeValue("page", 1)
@@ -201,7 +200,7 @@ this.onPageSubmit(newPage)
   render() {
     const { photos, totalPages, page, location, searchValue } = this.props
     const { modalOpen, modalImg} = this.state
-
+//попап скачать
     const download = (
       <Popover id="popover-basic">
         <Popover.Body>

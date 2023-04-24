@@ -10,8 +10,14 @@ import Popover from 'react-bootstrap/Popover';
 
 
 const Navigation = (props) => {
+
+  //триггер для меню в мобильной версии
   const [menuOpen, setMenuOpen] = useState(false)
+
+  //для инпута в меню
   const [search, setSearch] = useState("")
+
+  //попап на инпут в меню
   const popover = (
     <Popover id="popover-basic">
       <Popover.Header as="h3">Небольшая справка</Popover.Header>
@@ -20,18 +26,19 @@ const Navigation = (props) => {
       </Popover.Body>
     </Popover>
   );
+
+  //поиск картинок при нажатии Enter
   var onPressEnter = (e) => {
     if (e.key === 'Enter') {
       onSubmit()
     }
   }
 
-  
+  //отдельная функция для поиска картинок, чтобы не повторять код
   var onSubmit = () => {
     var { baseUrl, clientId, searchValue} = props
     var url = ""
       url = baseUrl + "/search/photos?per_page=20&page=1&query="+ searchValue + "&client_id=" + clientId
-
 
       Axios.get(url).then(function(response) {
         if(response.status === 200){

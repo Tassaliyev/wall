@@ -2,14 +2,10 @@ import React from 'react'
 import NavContainer from '../containers/NavContainer'
 import Fade from 'react-reveal/Fade';
 import Gallery from './Gallery';
+import { calculate_age } from './functions';
 
 const About = () => {
-  function calculate_age(dob) { 
-    var diff_ms = Date.now() - dob.getTime();
-    var age_dt = new Date(diff_ms); 
   
-    return Math.abs(age_dt.getUTCFullYear() - 1970);
-}
 
 
   return (

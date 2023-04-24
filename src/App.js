@@ -12,9 +12,10 @@ import Preloader from './components/Preloader';
 
 
 const App = () => {
+  //для preloader
   const [progress, setProgress] = useState(0);
-
-  const fillProcent = async () => {
+//заполнить до 100% и убрать preloader
+  const fillProgress = async () => {
     var preloader = document.getElementById("preloader")
     preloader.style.opacity=0;
     // preloader.style.height=0;
@@ -24,13 +25,14 @@ const App = () => {
 
       }
 
-
+//заполнять preloader до 95% каждые 50 млсек, после подождать события загрузки страницы после заполнить до 100% и убрать preloader
+//метод костыльный и не уверен, что правильный))
   useEffect(() => {
     const interval = setInterval(() => {
     setProgress((oldProgress) => {
     const newProgress = oldProgress + 1
      if(newProgress === 95) {
-      window.addEventListener('load', fillProcent());
+      window.addEventListener('load', fillProgress());
        clearInterval(interval)
      }
      return newProgress
