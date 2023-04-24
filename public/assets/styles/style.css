@@ -11,33 +11,69 @@ body {
   width: 100%;
   min-height: 100vh;
 }
-.loader {
+#preloader {
+  background: #fff url(../images/backgrounds/2.jpeg) no-repeat center;
+  background-size: contain;
+  background: white;
+  height: 100vh;
+  width: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
-  background: #333333;
-  transition: opacity 0.75s, visibility 0.75s;
-  z-index: 1000;
+  align-items: center;
+  z-index: 101;
+  opacity: 1;
+  visibility: visible;
+  transition: all 2s ease;
 }
-
-.loader--hidden {
-  opacity: 0;
-  visibility: hidden;
+.preloader-logo {
+display: block;
+position: fixed;
+width: 300px;
+height: 300px;
+border-radius: 50%;
+margin-bottom: 200px;
+-webkit-transition-box-shadow: -webkit-transform 1s;
+-webkit-animation: spin 1s linear infinite;
+-moz-animation: spin 1s linear infinite;
+animation: spin 1s linear infinite;
+} 
+@-webkit-keyframes spin {
+100%{-webkit-transform: rotatey(360deg);}
 }
+@-moz-keyframes spin {
+100%{-webkit-transform: rotatey(360deg);}
+}
+@keyframes spin {
+100%{-webkit-transform: rotatey(360deg);}
+}
+.progress-bar {
+margin-top: 500px;
+position: relative;
+width: 500px;
+height: 3em;
+background-color: black;
+border-radius: 1.5em;
+color: black;
+}
+.progress-bar::before {
+box-sizing: border-box;
+content: attr(data-label);
+display: flex;
+align-items: center;
+position: absolute;
+left: .5em;
+top: .5em;
+bottom: .5em;
+width: calc(var(--width, 0) * 1%);
+min-width: 2rem;
+max-width: calc(100% - 1em);
+background-color: white;
+border-radius: 1em;
+padding: 1em;
 
-.loader::after {
-  content: "";
-  width: 75px;
-  height: 75px;
-  border: 15px solid #dddddd;
-  border-top-color: #009578;
-  border-radius: 50%;
-  animation: loading 0.75s ease infinite;
 }
 
 
